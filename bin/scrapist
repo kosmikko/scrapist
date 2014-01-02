@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+var scrapist = require('..');
+var fs = require('fs');
+var path = require('path');
+
+var argv = require('optimist')
+    .usage('Usage: $0 -c [config_file] -o [output_file]')
+    .demand(['c','o'])
+    .argv;
+
+var configpath = path.join(path.dirname(fs.realpathSync(__filename)), '../', argv.c);
+var outputPath = argv.o;
+var config = require(configpath);
+
+outputPath = path.join(path.dirname(fs.realpathSync(__filename)), '../', outputPath);
+
+config.format = 'csv';
+scrapist.parse(config, function(err, csv) {
+  fs.writeFile(outputPath, csv, function(err) {
+    if (err) throw err;
+    console.log('file saved to ' + outputPath);
+  });
+});
