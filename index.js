@@ -1,6 +1,7 @@
 var _request = require('request');
 var cheerio = require('cheerio');
 var _ = require('lodash');
+var json2csv = require('json2csv');
 
 exports.parse = function(config, callback) {
   var values = [];
@@ -23,10 +24,20 @@ exports.parse = function(config, callback) {
         values.push(row);
       }
     });
-    callback(null, values);
+    convert(values, config, callback);
   });
 }
 
 exports.request = function(url, callback) {
   _request(url, callback)
+}
+
+var convert = exports.convert = function(obj, config, callback) {
+  var labels = _.pluck(config.values.cols, 'label');
+  if(config.format === 'csv') {
+    json2csv({data: obj, fields: labels}, callback);
+  }
+  else {
+    callback(null, obj);
+  }
 }

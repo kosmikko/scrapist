@@ -18,10 +18,18 @@ describe('Parsing tests', function () {
     done();
   });
 
-  it('should convert to json based on config', function(done) {
+  it('should parse to json based on config', function(done) {
     scrapist.parse(config, function(err, res) {
       assert.equal(res.length, 15);
       assert.equal(res[0].arvo, '2,2258');
+      done();
+    });
+  });
+
+  it('should convert data to csv', function(done) {
+    config.format = 'csv';
+    scrapist.parse(config, function(err, res) {
+      assert(res);
       done();
     });
   });
