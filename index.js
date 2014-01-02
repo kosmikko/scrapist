@@ -5,7 +5,7 @@ var _ = require('lodash');
 exports.parse = function(config, callback) {
   var values = [];
   var selectors = config.values.selectors;
-  request(config.url, function(error, response, body) {
+  exports.request(config.url, function(error, response, body) {
     var $ = cheerio.load(body);
     var rowSelector = selectors.main + ' ' + selectors.rows;
     var rows = $(rowSelector);
@@ -27,6 +27,6 @@ exports.parse = function(config, callback) {
   });
 }
 
-var request = exports.request = function(url, callback) {
+exports.request = function(url, callback) {
   _request(url, callback)
 }
