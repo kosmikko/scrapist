@@ -15,7 +15,7 @@ var config = require(configpath);
 outputPath = path.join(path.dirname(fs.realpathSync(__filename)), '../', outputPath);
 
 config.format = 'csv';
-scrapist.parse(config, function(err, csv) {
+scrapist.process(config, {format: 'csv'}, function(err, csv) {
   fs.writeFile(outputPath, csv, function(err) {
     if (err) throw err;
     console.log('file saved to ' + outputPath);

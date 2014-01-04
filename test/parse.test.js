@@ -3,11 +3,11 @@ var assert = require('assert');
 var fs = require('fs');
 var path = require('path');
 var scrapist = require('..');
-var config = require('./configs/seligson');
 var fixturePath = path.join(__dirname + '/fixtures/seligson.html');
 var fixture = fs.readFileSync(fixturePath, 'utf8');
 
 describe('Parsing tests', function () {
+  var config = require('./configs/seligson');
   var sandbox;
 
   before(function(done) {
@@ -19,7 +19,7 @@ describe('Parsing tests', function () {
   });
 
   it('should parse to json based on config', function(done) {
-    scrapist.parse(config, function(err, res) {
+    scrapist.process(config, {}, function(err, res) {
       assert.equal(res.length, 15);
       assert.equal(res[0].arvo, '2,2258');
       done();
@@ -27,10 +27,11 @@ describe('Parsing tests', function () {
   });
 
   it('should convert data to csv', function(done) {
-    config.format = 'csv';
-    scrapist.parse(config, function(err, res) {
+    scrapist.process(config, {format: 'csv'}, function(err, res) {
       assert(res);
       done();
     });
   });
+
+
 });
