@@ -14,7 +14,7 @@ describe('Parsing tests', function () {
     sandbox = sinon.sandbox.create();
     sandbox.stub(scrapist, 'request', function(url, callback) {
       callback(null, {}, fixture);
-    })
+    });
     done();
   });
 
@@ -32,6 +32,5 @@ describe('Parsing tests', function () {
       done();
     });
   });
-
 
 });

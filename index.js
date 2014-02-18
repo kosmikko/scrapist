@@ -15,7 +15,7 @@ exports.process = function(config, options, callback) {
       return function(cb) {
         //console.log('parsing', item.url);
         exports.parse(item, cb);
-      }
+      };
     });
     async.parallel(fns, function(err, results) {
       // join results
@@ -25,9 +25,9 @@ exports.process = function(config, options, callback) {
   } else {
     exports.parse(config, function(err, results) {
       convertResults(results);
-    })
+    });
   }
-}
+};
 
 exports.parse = function(config, callback) {
   var values = [];
@@ -50,17 +50,17 @@ exports.parse = function(config, callback) {
         var staticCols = config.staticCols;
         staticCols && staticCols.forEach(function(col) {
           row[col.label] = col.value;
-        })
+        });
         values.push(row);
       }
     });
     callback(null, values);
   });
-}
+};
 
 exports.request = function(url, callback) {
-  _request(url, callback)
-}
+  _request(url, callback);
+};
 
 var convert = exports.convert = function(obj, options, callback) {
   if(options.format === 'csv') {
@@ -69,4 +69,4 @@ var convert = exports.convert = function(obj, options, callback) {
   else {
     callback(null, obj);
   }
-}
+};

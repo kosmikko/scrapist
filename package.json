@@ -6,16 +6,16 @@
     "scrapist": "./bin/scrapist"
   },
   "dependencies": {
-    "request": "~2.30.0",
+    "request": "~2.33.0",
     "optimist": "~0.6.0",
     "lodash": "~2.4.1",
     "json2csv": "~2.2.1",
-    "whacko": "~0.12.9",
+    "whacko": "~0.12.10",
     "async": "~0.2.9",
     "moment": "~2.5.0"
   },
   "devDependencies": {
-    "mocha": "~1.16.2",
+    "mocha": "~1.17.1",
     "sinon": "~1.7.3"
   },
   "author": "Mikko Lehtinen <me@kosmikko.com>",
